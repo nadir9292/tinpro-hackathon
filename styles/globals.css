@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#__next {
+  @apply min-h-full;
+  background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+}
+
+h1 {
+  color: rgb(228 228 231);
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgb(12 74 110);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}

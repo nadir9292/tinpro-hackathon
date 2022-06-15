@@ -3,7 +3,6 @@ import { useContext } from "react"
 import { AppContext } from "../src/components/AppContext"
 import useApi from "../src/components/useApi"
 import Text from "../src/components/Text"
-import Slider_index from "../src/components/Slider_index"
 import Link from "next/link"
 
 const Index = () => {

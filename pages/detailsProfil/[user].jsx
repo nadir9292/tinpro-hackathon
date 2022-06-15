@@ -4,9 +4,18 @@ import Layout from "../../src/components/Layout"
 import Text from "../../src/components/Text"
 import useApi from "../../src/components/useApi"
 
-const User = () => {
+// /!\ WARNING : this has been coded by Avetis 🤣💀💀
+export const getServerSideProps = async (context) => {
+  return {
+    props: {
+      query: context.query,
+    },
+  }
+}
+
+const User = ({ query }) => {
   const { jwt, logout, id } = useContext(AppContext)
-  const detailsUser = useApi([], "get", `/api/v1/user/find/${id}`)
+  const detailsUser = useApi([], "get", `/api/v1/user/find/${query.user}`)
 
   return (
     <Layout title="Kingdhome" islogged={!jwt} logout={logout} id={id}>

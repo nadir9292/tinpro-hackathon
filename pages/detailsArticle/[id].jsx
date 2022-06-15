@@ -1,4 +1,3 @@
-import { useRouter } from "next/router"
 import { useContext } from "react"
 import { AppContext } from "../../src/components/AppContext"
 import Layout from "../../src/components/Layout"
@@ -7,11 +6,19 @@ import Text from "../../src/components/Text"
 import Link from "next/link"
 import Button from "../../src/components/Button"
 
-const Id = () => {
+// /!\ WARNING : this has been coded by Avetis 🤣💀
+export const getServerSideProps = async (context) => {
+  return {
+    props: {
+      query: context.query,
+    },
+  }
+}
+
+const Id = ({ query }) => {
   const { jwt, logout } = useContext(AppContext)
-  const router = useRouter()
-  const { id } = router.query
-  const detailsArticle = useApi([], "get", `/api/v1/articles/find/${id}`)
+
+  const detailsArticle = useApi([], "get", `/api/v1/articles/find/${query.id}`)
 
   return (
     <Layout title="Kingdhome" islogged={!jwt} logout={logout}>

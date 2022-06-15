@@ -15,17 +15,15 @@ import Popup from "../src/components/Popup"
 import { AppContext } from "../src/components/AppContext"
 
 const initialValues = {
-  firstname: "",
-  lastname: "",
   username: "",
   email: "",
   password: "",
+  role: [],
+  roles: [],
 }
 
 const validationSchema = yup.object().shape({
   username: usernameValidator.required(),
-  lastname: usernameValidator.required(),
-  firstname: usernameValidator.required(),
   email: emailValidator.required(),
   password: passwordValidator.required(),
 })
@@ -34,13 +32,15 @@ const Register = () => {
   const { jwt, logout } = useContext(AppContext)
   const [error, setError] = useState(null)
   const handleFormSubmit = useCallback(
-    async ({ username, email, password }) => {
+    async ({ username, email, password, role, roles }) => {
       setError(null)
       try {
         const { data } = await makeClient().post("/api/v1/auth/signup", {
           username,
           email,
           password,
+          role,
+          roles,
         })
       } catch (err) {
         const { response: { data } = {} } = err
@@ -73,12 +73,6 @@ const Register = () => {
                 <Text variant="login_register" size="xl">
                   Create your account
                 </Text>
-                <FormField name="firstname" type="text">
-                  First name
-                </FormField>
-                <FormField name="lastname" type="text">
-                  Last name
-                </FormField>
                 <FormField name="username" type="text">
                   Username
                 </FormField>

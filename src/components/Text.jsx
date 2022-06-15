@@ -3,13 +3,15 @@ import classNames from "classnames"
 const className = "font-bold"
 
 const variants = {
-  login_register: "text-gray-900 font-semibold font-family: Consolas",
+  login_register:
+    "text-gray-900 font-semibold font-family: Consolas text-center",
   nav_bar_text: "text-zinc-200 hover:text-zinc-300 text-center",
   popup:
     "flex justify-center text-gray-900 font-semibold font-family: Consolas",
   info: "text-gray-900 font-medium pt-2",
   link: "underline underline-offset-1 text-blue-500 font-semibold",
   card_name: "text-amber-500 font-bold text-left",
+  card_title: "text-amber-400 font-bold text-left font-mono",
   card_category: "text-zinc-200 text-left",
   card_price: "text-zinc-200 text-left",
   card_rating: "text-zinc-200 text-center",

@@ -74,17 +74,11 @@ const Login = () => {
           {({ isSubmitting, isValid, handleSubmit }) => (
             <form
               onSubmit={handleSubmit}
-              className="bg-zinc-200 shadow-lg rounded p-10 mb-4 items-center"
+              className="bg-zinc-200 shadow-lg rounded p-10 mb-4 items-center shadow-xl"
             >
-              {error ? (
-                <p className="bg-red-600 text-white font-bold px-4 py-2">
-                  {error} 😕
-                </p>
-              ) : null}
-
               <div className="flex flex-col">
                 <Text variant="login_register" size="xl">
-                  Sign in to Zwitter
+                  Welcome
                 </Text>
                 <FormField name="username" type="text">
                   Username
@@ -95,26 +89,18 @@ const Login = () => {
                 <Button
                   type="submit"
                   onClick={() => setButtonPopup(true)}
-                  disabled={isSubmitting && !isValid}
+                  disabled={isSubmitting || !isValid}
                   variant="btnValidation"
                   size="lg"
                 >
-                  Log in
+                  Sign Up
                 </Button>
-                <Text variant="info" sizes="sm">
-                  Don't have an account ?&nbsp;
-                  <Link href="/register">
-                    <a>
-                      <Text variant="link">Sign Up</Text>
-                    </a>
-                  </Link>
-                </Text>
               </div>
-              {error ? null : (
-                <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                  <Text variant="popup">Welcome 😊</Text>
-                </Popup>
-              )}
+              <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+                <Text variant="popup">
+                  if you don't have an account, we will send you an email.
+                </Text>
+              </Popup>
             </form>
           )}
         </Formik>

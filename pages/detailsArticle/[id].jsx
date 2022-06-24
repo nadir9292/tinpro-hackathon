@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useCallback, useContext } from "react"
 import { AppContext } from "../../src/components/AppContext"
 import Layout from "../../src/components/Layout"
 import useApi from "../../src/components/useApi"
@@ -16,12 +16,28 @@ export const getServerSideProps = async (context) => {
 }
 
 const Id = ({ query }) => {
-  const { jwt, logout } = useContext(AppContext)
-
+  const { jwt, logout, id } = useContext(AppContext)
+  const handleFormSubmit = useCallback(async ({ total }) => {
+    setError(null)
+    try {
+      const { data } = await makeClient({}).put(
+        `/api/v1/shoppingCart/update/vasco`,
+        {
+          total,
+        }
+      )
+    } catch (err) {
+      const { response: { data } = {} } = err
+      if (data.error) {
+        setError(data.error)
+        return
+      }
+      setError("Oops, something went wrong.")
+    }
+  }, [])
   const detailsArticle = useApi([], "get", `/api/v1/articles/find/${query.id}`)
-
   return (
-    <Layout title="Kingdhome" islogged={!jwt} logout={logout}>
+    <Layout title="Kingdhome" islogged={!jwt} logout={logout} id={id}>
       <div className="pt-6">
         {/* Image gallery */}
         <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
@@ -88,8 +104,7 @@ const Id = ({ query }) => {
                 </Text>
               </div>
             </div>
-
-            <form className="mt-10">
+            <form onSubmit={handleFormSubmit}>
               <Button type="submit" variant="btnValidation" size="lg">
                 Add to bag
               </Button>

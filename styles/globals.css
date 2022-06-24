@@ -7,20 +7,12 @@ body,
 #__next {
   @apply min-h-full;
   background-color: #111827;
-  background-image: url("https://tailwindcss.com/_next/static/media/docs-dark@tinypng.a8984b7fb44a4f8232d04de50220ab31.png");
+  background-image: url("https://tailwindcss.com/_next/static/media/docs@tinypng.61f4d3334a6d245fc2297517c87ae044.png");
+  background-repeat: no-repeat;
+  background-size: auto;
 }
 
 h1 {
   color: rgb(228 228 231);
   font-weight: bold;
-}
-
-.footer {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: rgb(12 74 110);
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
 }

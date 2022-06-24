@@ -4,7 +4,7 @@ const className = "font-bold"
 
 const variants = {
   login_register:
-    "text-gray-900 font-semibold font-family: Consolas text-center",
+    "text-zinc-100 font-bold font-family: Consolas text-center mb-10",
   nav_bar_text: "text-zinc-200 hover:text-zinc-300 text-center",
   popup:
     "flex justify-center text-gray-900 font-semibold font-family: Consolas",

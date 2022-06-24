@@ -2,19 +2,23 @@ import { Dialog, Transition, Menu } from "@headlessui/react"
 import { Fragment, useState } from "react"
 import {
   MenuIcon,
-  SearchIcon,
   ShoppingBagIcon,
   UserCircleIcon,
   XIcon,
   LogoutIcon,
+  AdjustmentsIcon,
+  PlusIcon,
 } from "@heroicons/react/outline"
 import Image from "next/image"
 import Link from "next/link"
 import Text from "./Text"
+import useApi from "./useApi"
 
 const NavBar = (props) => {
   const [open, setOpen] = useState(false)
-  const { islogged, logout, id: userId } = props
+  const { islogged, logout, id: userId, isShow } = props
+  const [show, setShow] = useState(isShow)
+  const userInfos = useApi([], "get", `/api/v1/user/find/${userId}`)
 
   return (
     <>
@@ -83,9 +87,9 @@ const NavBar = (props) => {
       </Transition.Root>
       {/* Mobile menu */}
 
-      <header className="relative">
+      <header className="relative ">
         <nav aria-label="Top" className=" mx-auto px-2 sm:px-3 lg:px-4 ">
-          <div className="h-16 flex items-center">
+          <div className="h-16 flex items-center ">
             <button
               type="button"
               className="p-2 rounded-md text-gray-400 lg:hidden"
@@ -99,14 +103,7 @@ const NavBar = (props) => {
             <div className="flex flex-row items-center hover:scale-105">
               <Link href="/">
                 <a>
-                  <Image src="/logo.png" width={65} height={65} />
-                </a>
-              </Link>
-              <Link href="/">
-                <a>
-                  <Text variant="card_title" size="xl">
-                    KINGDHOME
-                  </Text>
+                  <Image priority src="/logo.png" width={250} height={65} />
                 </a>
               </Link>
             </div>
@@ -137,7 +134,10 @@ const NavBar = (props) => {
                     className="z-40 relative inline-block text-left "
                   >
                     <Menu.Button className="inline-flex w-full justify-center px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                      <UserCircleIcon className="flex-shrink-0 h-6 w-6 text-zinc-200  hover:text-zinc-300" />
+                      <UserCircleIcon className="flex-shrink-0 h-6 w-6 text-zinc-200  hover:text-zinc-300 mr-2" />
+                      <Text variant="nav_bar_text" size="lg">
+                        {userInfos.username}
+                      </Text>
                     </Menu.Button>
 
                     <Transition
@@ -149,7 +149,7 @@ const NavBar = (props) => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="absolute  right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-zinc-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-zinc-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="px-1 py-1 ">
                           <Menu.Item>
                             {({ active }) => (
@@ -214,21 +214,68 @@ const NavBar = (props) => {
                       </Menu.Items>
                     </Transition>
                   </Menu>
+                  <Menu
+                    as="div"
+                    className="z-40 relative inline-block text-left "
+                  >
+                    <Menu.Button className="inline-flex w-full justify-center px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                      <AdjustmentsIcon className="flex-shrink-0 h-6 w-6 text-zinc-200  hover:text-zinc-300" />
+                      <Text variant="nav_bar_text" size="lg">
+                        Manage article
+                      </Text>
+                    </Menu.Button>
+
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="transform opacity-0 scale-95"
+                      enterTo="transform opacity-100 scale-100"
+                      leave="transition ease-in duration-75"
+                      leaveFrom="transform opacity-100 scale-100"
+                      leaveTo="transform opacity-0 scale-95"
+                    >
+                      <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-zinc-100 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <div className="px-1 py-1 ">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link href="/addArticle">
+                                <a>
+                                  <button
+                                    className={`${
+                                      active
+                                        ? "bg-orange-500 text-white"
+                                        : "text-gray-900"
+                                    } group flex w-full items-center rounded-md px-1 py-1 text-sm`}
+                                  >
+                                    {active ? (
+                                      <PlusIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    ) : (
+                                      <PlusIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                    Add arcticle
+                                  </button>
+                                </a>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </div>
+                      </Menu.Items>
+                    </Transition>
+                  </Menu>
                 </div>
               )}
-              {/* Search */}
-              <div className="flex lg:ml-6">
-                <Text variant="nav_bar_text" size="lg">
-                  <SearchIcon className="w-6 h-6" aria-hidden="true" />
-                </Text>
-              </div>
-
               {/* Cart */}
               <div className="ml-4 lg:ml-6 flex flex-row">
-                <Link href="#">
+                <Link href="/shoppingCart">
                   <a>
                     <Text variant="nav_bar_text" size="lg">
-                      <ShoppingBagIcon className="flex-shrink-0 h-6 w-6 text-zinc-200 hover:text-gray-500" />
+                      <ShoppingBagIcon className="flex-shrink-0 h-6 w-6 mr-1 text-zinc-100 hover:text-zinc-300" />
                     </Text>
                   </a>
                 </Link>

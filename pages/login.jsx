@@ -9,7 +9,6 @@ import {
 } from "../src/components/validators/validators"
 import * as yup from "yup"
 import { useCallback, useContext, useState } from "react"
-import Link from "next/link"
 import { makeClient } from "../src/services/makeClient"
 import { AppContext } from "../src/components/AppContext"
 import { useRouter } from "next/router"
@@ -65,42 +64,49 @@ const Login = () => {
 
   return (
     <Layout title="Kingdhome" islogged={!jwt} logout={logout}>
-      <div className="flex justify-center m-10">
+      <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
           {({ isSubmitting, isValid, handleSubmit }) => (
-            <form
-              onSubmit={handleSubmit}
-              className="bg-zinc-200 shadow-lg rounded p-10 mb-4 items-center shadow-xl"
-            >
-              <div className="flex flex-col">
-                <Text variant="login_register" size="xl">
-                  Welcome
-                </Text>
-                <FormField name="username" type="text">
-                  Username
-                </FormField>
-                <FormField name="password" type="password">
-                  Password
-                </FormField>
-                <Button
-                  type="submit"
-                  onClick={() => setButtonPopup(true)}
-                  disabled={isSubmitting || !isValid}
-                  variant="btnValidation"
-                  size="lg"
+            <form onSubmit={handleSubmit}>
+              <Text variant="login_register" size="xl">
+                Welcome
+              </Text>
+              <FormField name="username" type="text" placeholder=" ">
+                Username
+              </FormField>
+              <FormField name="password" type="password" placeholder=" ">
+                Password
+              </FormField>
+              <Button
+                type="submit"
+                onClick={() => setButtonPopup(true)}
+                disabled={isSubmitting || !isValid}
+                variant="btnValidation"
+                size="lg"
+              >
+                Sign Up
+              </Button>
+              {!error ? (
+                <Popup
+                  variant="login_success"
+                  trigger={buttonPopup}
+                  setTrigger={setButtonPopup}
                 >
-                  Sign Up
-                </Button>
-              </div>
-              <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-                <Text variant="popup">
-                  if you don't have an account, we will send you an email.
-                </Text>
-              </Popup>
+                  <Text variant="popup">Welcome 😊</Text>
+                </Popup>
+              ) : (
+                <Popup
+                  variant="login_error"
+                  trigger={buttonPopup}
+                  setTrigger={setButtonPopup}
+                >
+                  <Text variant="popup">Bad credential 💀</Text>
+                </Popup>
+              )}
             </form>
           )}
         </Formik>

@@ -58,41 +58,40 @@ const Register = () => {
 
   return (
     <Layout title="Kingdhome" islogged={!jwt} logout={logout}>
-      <div className="flex justify-center m-10">
+      <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
           {({ isSubmitting, isValid, handleSubmit }) => (
-            <form
-              onSubmit={handleSubmit}
-              className="bg-zinc-200 shadow-lg rounded p-10 mb-4 items-center shadow-xl"
-            >
-              <div className="flex flex-col">
-                <Text variant="login_register" size="xl">
-                  Create your account
-                </Text>
-                <FormField name="username" type="text">
-                  Username
-                </FormField>
-                <FormField name="email" type="email">
-                  E-mail
-                </FormField>
-                <FormField name="password" type="password">
-                  Password
-                </FormField>
-                <Button
-                  type="submit"
-                  onClick={() => setButtonPopup(true)}
-                  disabled={isSubmitting || !isValid}
-                  variant="btnValidation"
-                  size="lg"
-                >
-                  Sign Up
-                </Button>
-              </div>
-              <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <form onSubmit={handleSubmit}>
+              <Text variant="login_register" size="xl">
+                Create your account
+              </Text>
+              <FormField name="username" type="text" placeholder=" ">
+                Username
+              </FormField>
+              <FormField name="email" type="email" placeholder=" ">
+                E-mail
+              </FormField>
+              <FormField name="password" type="password" placeholder=" ">
+                Password
+              </FormField>
+              <Button
+                type="submit"
+                onClick={() => setButtonPopup(true)}
+                disabled={isSubmitting || !isValid}
+                variant="btnValidation"
+                size="lg"
+              >
+                Sign Up
+              </Button>
+              <Popup
+                trigger={buttonPopup}
+                setTrigger={setButtonPopup}
+                variant="login_success"
+              >
                 <Text variant="popup">
                   if you don't have an account, we will send you an email.
                 </Text>

@@ -6,7 +6,7 @@ import useApi from "../../src/components/useApi"
 import { Formik } from "formik"
 import {
   usernameValidator,
-  passwordValidator,
+  sexeValidator,
   postalCodeValidator,
 } from "../../src/components/validators/validators"
 import * as yup from "yup"
@@ -38,7 +38,7 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   firstname: usernameValidator.required(),
   lastname: usernameValidator.required(),
-  sexe: usernameValidator.required(),
+  sexe: sexeValidator.required(),
   city: usernameValidator.required(),
   postalCode: postalCodeValidator.required(),
   street: usernameValidator.required(),
@@ -48,7 +48,6 @@ const User = ({ query }) => {
   const { jwt, logout, id } = useContext(AppContext)
   const [buttonPopup, setButtonPopup] = useState(false)
   const [error, setError] = useState(null)
-  const UserInfos = useApi([], "get", `/api/v1/user/find/${query.user}`)
 
   const handleFormSubmit = useCallback(
     async ({
@@ -102,13 +101,13 @@ const User = ({ query }) => {
               <FormField name="sexe" placeholder=" " type="text">
                 Sexe
               </FormField>
-              <FormField name="city" placeholder=" " type="text">
+              <FormField name="address.city" placeholder=" " type="text">
                 City
               </FormField>
-              <FormField name="postalCode" placeholder=" " type="text">
+              <FormField name="address.postalCode" placeholder=" " type="text">
                 PostalCode
               </FormField>
-              <FormField name="street" placeholder=" " type="text">
+              <FormField name="address.street" placeholder=" " type="text">
                 Street
               </FormField>
               <Button

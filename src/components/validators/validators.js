@@ -19,6 +19,8 @@ export const postalCodeValidator = yup.number().label("Postal Code")
 
 export const categoryValidator = yup.string().min(3).max(20).label("category")
 
+export const sexeValidator = yup.string().min(1).max(2).label("sexe")
+
 export const descriptionValidator = yup
   .string()
   .min(3)

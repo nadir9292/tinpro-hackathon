@@ -40,7 +40,7 @@ const validationSchema = yup.object().shape({
 })
 
 const AddArticle = () => {
-  const { jwt, logout, id } = useContext(AppContext)
+  const { jwt, logout, id, username } = useContext(AppContext)
   const [buttonPopup, setButtonPopup] = useState(false)
   const [error, setError] = useState(null)
   const handleFormSubmit = useCallback(
@@ -81,7 +81,13 @@ const AddArticle = () => {
   )
 
   return (
-    <Layout title="Kingdhome" islogged={!jwt} logout={logout} id={id}>
+    <Layout
+      title="Kingdhome"
+      islogged={!jwt}
+      logout={logout}
+      id={id}
+      username={username}
+    >
       <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <Formik
           onSubmit={handleFormSubmit}
@@ -113,8 +119,8 @@ const AddArticle = () => {
               </FormField>
               <Text>
                 Exemple :&nbsp;
-                <span className="text-orange-500">
-                  https://www.ikea.com/fr/fr/images/products/godmorgon-braviken-meuble-lavabo-2tir-brillant-blanc-mitigeur-lavabo-brogrund__0969020_pe810673_s5.jpg?f=xl
+                <span className="text-orange-500 text-justify">
+                  https://www.lago.it/wp-content/uploads/2021/04/tavolo-in-legno.jpg
                 </span>
               </Text>
               <FormField name="pictures[0]" type="text" placeholder=" ">

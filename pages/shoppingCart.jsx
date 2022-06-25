@@ -6,15 +6,23 @@ import Text from "../src/components/Text"
 import Button from "../src/components/Button"
 
 const ShoppingCart = () => {
-  const { jwt, logout, id } = useContext(AppContext)
+  const { jwt, logout, id, username } = useContext(AppContext)
+
   const shoppingCart = useApi(
     { articles: [{ pictures: [{}] }] },
     "get",
-    "/api/v1/shoppingCart/findByUsername/vasco"
+    `/api/v1/shoppingCart/findByUsername/${username}`
   )
 
   return (
-    <Layout isShow title="Kingdhome" islogged={!jwt} logout={logout} id={id}>
+    <Layout
+      isShow
+      title="Kingdhome"
+      islogged={!jwt}
+      logout={logout}
+      id={id}
+      username={username}
+    >
       <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <table className="w-full whitespace-nowrap">
           <tbody>

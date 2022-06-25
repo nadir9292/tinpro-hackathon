@@ -16,9 +16,7 @@ import useApi from "./useApi"
 
 const NavBar = (props) => {
   const [open, setOpen] = useState(false)
-  const { islogged, logout, id: userId, isShow } = props
-  const [show, setShow] = useState(isShow)
-  const userInfos = useApi([], "get", `/api/v1/user/find/${userId}`)
+  const { islogged, logout, id: userId, username } = props
 
   return (
     <>
@@ -58,27 +56,60 @@ const NavBar = (props) => {
                     <XIcon className="h-6 w-6" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  Profil
-                </div>
+                {islogged ? (
+                  <div className="border-t border-gray-200 py-6 px-4 space-y-6">
+                    you must be logged in, to see your profile
+                  </div>
+                ) : (
+                  <div className="border-t border-gray-200 flex flex-row p-4 ">
+                    <EditInactiveIcon
+                      className="mr-2 h-5 w-5"
+                      aria-hidden="true"
+                    />
+                    <Link
+                      href={{
+                        pathname: `./detailsProfil/${userId}`,
+                      }}
+                    >
+                      <a>Edit my profil</a>
+                    </Link>
+                  </div>
+                )}
 
                 <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                  <div className="flow-root">
-                    <Link
-                      href="/login"
-                      className="-m-2 p-2 block font-medium text-gray-900"
-                    >
-                      <a>Sign in</a>
-                    </Link>
-                  </div>
-                  <div className="flow-root">
-                    <Link
-                      href="/register"
-                      className="-m-2 p-2 block font-medium text-gray-900"
-                    >
-                      <a>Create account</a>
-                    </Link>
-                  </div>
+                  {islogged ? (
+                    <>
+                      <div className="flow-root">
+                        <Link
+                          href="/login"
+                          className="-m-2 p-2 block font-medium text-gray-900"
+                        >
+                          <a>Sign in</a>
+                        </Link>
+                      </div>
+                      <div className="flow-root">
+                        <Link
+                          href="/register"
+                          className="-m-2 p-2 block font-medium text-gray-900"
+                        >
+                          <a>Create account</a>
+                        </Link>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex flex-row">
+                        <PlusIcon className="mr-2 h-5 w-5 text-gray-500" />
+                        <Link href="/addArticle">
+                          <a>Add article</a>
+                        </Link>
+                      </div>
+                      <div className="flex flex-row">
+                        <LogoutIcon className="mr-2 h-5 w-5 text-red-500" />
+                        <button onClick={logout}>Log Out</button>
+                      </div>
+                    </>
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -136,7 +167,7 @@ const NavBar = (props) => {
                     <Menu.Button className="inline-flex w-full justify-center px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                       <UserCircleIcon className="flex-shrink-0 h-6 w-6 text-zinc-200  hover:text-zinc-300 mr-2" />
                       <Text variant="nav_bar_text" size="lg">
-                        {userInfos.username}
+                        {username}
                       </Text>
                     </Menu.Button>
 
@@ -271,19 +302,23 @@ const NavBar = (props) => {
                 </div>
               )}
               {/* Cart */}
-              <div className="ml-4 lg:ml-6 flex flex-row">
-                <Link href="/shoppingCart">
-                  <a>
-                    <Text variant="nav_bar_text" size="lg">
-                      <ShoppingBagIcon className="flex-shrink-0 h-6 w-6 mr-1 text-zinc-100 hover:text-zinc-300" />
-                    </Text>
-                  </a>
-                </Link>
-                <Text variant="nav_bar_text" size="lg">
-                  0
-                </Text>
-                <span className="sr-only">items in cart, view bag</span>
-              </div>
+              {!islogged ? (
+                <div className="ml-4 lg:ml-6 flex flex-row">
+                  <Link href="/shoppingCart">
+                    <a>
+                      <Text variant="nav_bar_text" size="lg">
+                        <ShoppingBagIcon className="flex-shrink-0 h-6 w-6 mr-1 text-zinc-100 hover:text-zinc-300" />
+                      </Text>
+                    </a>
+                  </Link>
+                  <Text variant="nav_bar_text" size="lg">
+                    0
+                  </Text>
+                  <span className="sr-only">items in cart, view bag</span>
+                </div>
+              ) : (
+                <h1></h1>
+              )}
             </div>
           </div>
         </nav>

@@ -8,11 +8,17 @@ import SearchBar from "../src/components/SearchBar"
 import Pagination from "../src/components/Pagination"
 
 const Index = () => {
-  const { jwt, logout, id } = useContext(AppContext)
+  const { jwt, logout, id, username } = useContext(AppContext)
   const articles = useApi([], "get", "/api/v1/articles/all")
 
   return (
-    <Layout title="Kingdhome" islogged={!jwt} logout={logout} id={id}>
+    <Layout
+      title="Kingdhome"
+      islogged={!jwt}
+      logout={logout}
+      id={id}
+      username={username}
+    >
       <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <SearchBar />
         <div className="mt-6 grid  grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">

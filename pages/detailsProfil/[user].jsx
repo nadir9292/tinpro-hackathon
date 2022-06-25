@@ -45,7 +45,7 @@ const validationSchema = yup.object().shape({
 })
 
 const User = ({ query }) => {
-  const { jwt, logout, id } = useContext(AppContext)
+  const { jwt, logout, id, username } = useContext(AppContext)
   const [buttonPopup, setButtonPopup] = useState(false)
   const [error, setError] = useState(null)
 
@@ -80,7 +80,13 @@ const User = ({ query }) => {
   )
 
   return (
-    <Layout title="Kingdhome" islogged={!jwt} logout={logout} id={id}>
+    <Layout
+      title="Kingdhome"
+      islogged={!jwt}
+      logout={logout}
+      id={id}
+      username={username}
+    >
       <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <Formik
           onSubmit={handleFormSubmit}

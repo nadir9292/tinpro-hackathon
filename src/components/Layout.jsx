@@ -2,7 +2,7 @@ import Head from "next/head"
 import NavBar from "./NavBar"
 
 const Layout = (props) => {
-  const { title, children, islogged, logout, id, isShow } = props
+  const { title, children, islogged, logout, id, username } = props
 
   return (
     <>
@@ -11,11 +11,11 @@ const Layout = (props) => {
       </Head>
       <header>
         <NavBar
-          isShow={false}
           title={title}
           islogged={islogged}
           logout={logout}
           id={id}
+          username={username}
         ></NavBar>
       </header>
       <main>{children}</main>

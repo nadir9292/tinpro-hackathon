@@ -1,5 +1,5 @@
 import Layout from "../src/components/Layout"
-import { Formik } from "formik"
+import { Field, Formik } from "formik"
 import FormField from "../src/components/formUI/FormField"
 import Button from "../src/components/Button"
 import Text from "../src/components/Text"
@@ -18,8 +18,7 @@ const initialValues = {
   username: "",
   email: "",
   password: "",
-  role: [],
-  roles: [],
+  role: "USER",
 }
 
 const validationSchema = yup.object().shape({
@@ -32,7 +31,7 @@ const Register = () => {
   const { jwt, logout } = useContext(AppContext)
   const [error, setError] = useState(null)
   const handleFormSubmit = useCallback(
-    async ({ username, email, password, role, roles }) => {
+    async ({ username, email, password, role }) => {
       setError(null)
       try {
         const { data } = await makeClient().post("/api/v1/auth/signup", {
@@ -40,7 +39,6 @@ const Register = () => {
           email,
           password,
           role,
-          roles,
         })
       } catch (err) {
         const { response: { data } = {} } = err

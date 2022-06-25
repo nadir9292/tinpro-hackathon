@@ -16,7 +16,7 @@ export const getServerSideProps = async (context) => {
 }
 
 const Id = ({ query }) => {
-  const { jwt, logout, id } = useContext(AppContext)
+  const { jwt, logout, id, username } = useContext(AppContext)
   const handleFormSubmit = useCallback(async ({ total }) => {
     setError(null)
     try {
@@ -37,7 +37,13 @@ const Id = ({ query }) => {
   }, [])
   const detailsArticle = useApi([], "get", `/api/v1/articles/find/${query.id}`)
   return (
-    <Layout title="Kingdhome" islogged={!jwt} logout={logout} id={id}>
+    <Layout
+      title="Kingdhome"
+      islogged={!jwt}
+      logout={logout}
+      id={id}
+      username={username}
+    >
       <div className="pt-6">
         {/* Image gallery */}
         <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">

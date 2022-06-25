@@ -31,7 +31,7 @@ const Login = () => {
     router.reload()
   }
 
-  const { jwt, logout } = useContext(AppContext)
+  const { jwt, logout, username } = useContext(AppContext)
 
   const [error, setError] = useState(null)
 
@@ -43,7 +43,7 @@ const Login = () => {
     setError(null)
     try {
       const {
-        data: { jwt, id },
+        data: { jwt, id, username: pseudo },
       } = await makeClient().post("/api/v1/auth/signin", { username, password })
 
       if (!jwt) {
@@ -51,7 +51,7 @@ const Login = () => {
       }
 
       redirect()
-      savejwt(jwt, id)
+      savejwt(jwt, id, pseudo)
     } catch (err) {
       const { response: { data } = {} } = err
       if (data.error) {
@@ -63,7 +63,12 @@ const Login = () => {
   }, [])
 
   return (
-    <Layout title="Kingdhome" islogged={!jwt} logout={logout}>
+    <Layout
+      title="Kingdhome"
+      islogged={!jwt}
+      logout={logout}
+      username={username}
+    >
       <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <Formik
           onSubmit={handleFormSubmit}

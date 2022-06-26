@@ -34,14 +34,7 @@ const initialValues = {
   },
 }
 
-const validationSchema = yup.object().shape({
-  firstname: usernameValidator.required(),
-  lastname: usernameValidator.required(),
-  sexe: sexeValidator.required(),
-  city: usernameValidator.required(),
-  postalCode: postalCodeValidator.required(),
-  street: usernameValidator.required(),
-})
+const validationSchema = yup.object().shape({})
 
 const User = ({ query }) => {
   const { jwt, logout, id, username } = useContext(AppContext)
@@ -50,20 +43,20 @@ const User = ({ query }) => {
 
   const handleFormSubmit = useCallback(
     async ({
+      address: { city, postalCode, street },
       firstname,
       lastname,
       sexe,
-      address: { city, postalCode, street },
     }) => {
       setError(null)
       try {
         const { data } = await makeClient({}).put(
-          `/api/v1/user/updateInfos/${query.user}`,
+          `/api/v1/user/updateInfos/${id}`,
           {
+            address: { city, postalCode, street },
             firstname,
             lastname,
             sexe,
-            address: { city, postalCode, street },
           }
         )
       } catch (err) {
@@ -95,7 +88,7 @@ const User = ({ query }) => {
           {({ isSubmitting, isValid, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <Text variant="login_register" size="xl">
-                Welcome
+                Edit my profile
               </Text>
               <FormField name="firstname" placeholder=" " type="text">
                 Firstname
@@ -129,7 +122,7 @@ const User = ({ query }) => {
                 setTrigger={setButtonPopup}
                 variant="login_success"
               >
-                <Text variant="popup">Your account has been modified 😊.</Text>
+                <Text variant="popup">Your porfile has been modified 😊.</Text>
               </Popup>
             </form>
           )}

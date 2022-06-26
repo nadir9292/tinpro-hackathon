@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import { SearchIcon, XIcon } from "@heroicons/react/outline"
 import Link from "next/link"
 import Text from "./Text"
 
@@ -42,7 +41,14 @@ const SearchBar = ({ data }) => {
                     pathname: `./detailsArticle/${value.id}`,
                   }}
                 >
-                  <a>
+                  <a className="inline-flex pb-5 px-2">
+                    <img
+                      src={value.pictures[0]}
+                      alt={value.pictures[0]}
+                      width={50}
+                      height={50}
+                      className="object-center object-cover mx-2 rounded"
+                    />
                     <Text variant="card_name" size="md">
                       {value.name}
                     </Text>

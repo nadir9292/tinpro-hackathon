@@ -28,6 +28,12 @@ const Id = ({ query }) => {
   const { jwt, logout, id, username: pseudo } = useContext(AppContext)
   const [error, setError] = useState(null)
   const [buttonPopup, setButtonPopup] = useState(false)
+  const articleInCart = useApi(
+    { articles: [{}] },
+    "get",
+    `/api/v1/shoppingCart/findByUsername/${pseudo}`
+  )
+
   const handleFormSubmit = useCallback(async ({ total, articles }) => {
     setError(null)
     try {
@@ -67,8 +73,8 @@ const Id = ({ query }) => {
         <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
           <div className="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
             <img
-              src={detailsArticle.pictures[1]}
-              alt={detailsArticle.pictures[1]}
+              src={detailsArticle.pictures[2]}
+              alt={detailsArticle.pictures[2]}
               className="w-full h-full object-center object-cover"
             />
           </div>
@@ -82,16 +88,16 @@ const Id = ({ query }) => {
             </div>
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
               <img
-                src={detailsArticle.pictures[2]}
-                alt={detailsArticle.pictures[2]}
+                src={detailsArticle.pictures[3]}
+                alt={detailsArticle.pictures[3]}
                 className="w-full h-full object-center object-cover"
               />
             </div>
           </div>
           <div className="aspect-w-4 aspect-h-5 sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4">
             <img
-              src={detailsArticle.pictures[3]}
-              alt={detailsArticle.pictures[3]}
+              src={detailsArticle.pictures[1]}
+              alt={detailsArticle.pictures[1]}
               className="w-full h-full object-center object-cover"
             />
           </div>
@@ -128,7 +134,7 @@ const Id = ({ query }) => {
                 </Text>
               </div>
             </div>
-            <Formik
+            {/* <Formik
               onSubmit={handleFormSubmit}
               initialValues={initialValues}
               validationSchema={null}
@@ -169,7 +175,7 @@ const Id = ({ query }) => {
                   )}
                 </form>
               )}
-            </Formik>
+            </Formik> */}
           </div>
 
           <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">

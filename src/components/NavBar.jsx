@@ -12,10 +12,16 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import Text from "./Text"
+import useApi from "../../src/components/useApi"
 
 const NavBar = (props) => {
   const [open, setOpen] = useState(false)
   const { islogged, logout, id: userId, username } = props
+  const articleInCart = useApi(
+    { articles: [{}] },
+    "get",
+    `/api/v1/shoppingCart/findByUsername/${username}`
+  )
 
   return (
     <>
@@ -311,7 +317,7 @@ const NavBar = (props) => {
                     </a>
                   </Link>
                   <Text variant="nav_bar_text" size="lg">
-                    0
+                    {articleInCart.articles.length}
                   </Text>
                   <span className="sr-only">items in cart, view bag</span>
                 </div>

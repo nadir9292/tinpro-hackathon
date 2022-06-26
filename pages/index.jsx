@@ -1,5 +1,5 @@
 import Layout from "../src/components/Layout"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 import { AppContext } from "../src/components/AppContext"
 import useApi from "../src/components/useApi"
 import Text from "../src/components/Text"
@@ -9,7 +9,12 @@ import Pagination from "../src/components/Pagination"
 
 const Index = () => {
   const { jwt, logout, id, username } = useContext(AppContext)
-  const articles = useApi([], "get", "/api/v1/articles/all")
+  const articles = useApi(
+    { content: [] },
+    "get",
+    "/api/v1/articles/allpage?size=8&page=0"
+  )
+  const searchData = useApi([], "get", "/api/v1/articles/all")
 
   return (
     <Layout
@@ -20,9 +25,9 @@ const Index = () => {
       username={username}
     >
       <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <SearchBar data={articles} />
+        <SearchBar data={searchData} />
         <div className="mt-6 grid  grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 ">
-          {articles.map(
+          {articles.content.map(
             ({ id, name, category, price, rating, pictures }, index) => (
               <div key={index} className="group relative hover:scale-105">
                 <div className="w-full min-h-80  aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none ">
@@ -61,7 +66,7 @@ const Index = () => {
             )
           )}
         </div>
-        <Pagination />
+        <Pagination totalPage={articles.totalPages} />
       </div>
     </Layout>
   )

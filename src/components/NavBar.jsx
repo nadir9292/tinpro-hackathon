@@ -12,7 +12,6 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import Text from "./Text"
-import useApi from "./useApi"
 
 const NavBar = (props) => {
   const [open, setOpen] = useState(false)

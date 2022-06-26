@@ -2,7 +2,6 @@ import { useContext, useCallback, useState } from "react"
 import { AppContext } from "../../src/components/AppContext"
 import Layout from "../../src/components/Layout"
 import Text from "../../src/components/Text"
-import useApi from "../../src/components/useApi"
 import { Formik } from "formik"
 import {
   usernameValidator,

@@ -21,7 +21,7 @@ const FormFieldSelect = (props) => {
             <option value="yellow">Yellow</option>
             <option value="green">Green</option>
             <option value="gray">Gray</option>
-            <option value="Black">Back</option>
+            <option value="Black">Black</option>
             <option value="White">White</option>
           </select>
 

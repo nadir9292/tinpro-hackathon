@@ -1,10 +1,14 @@
-import { useCallback, useContext } from "react"
+import { useCallback, useContext, useState } from "react"
 import { AppContext } from "../../src/components/AppContext"
 import Layout from "../../src/components/Layout"
 import useApi from "../../src/components/useApi"
 import Text from "../../src/components/Text"
 import Link from "next/link"
 import Button from "../../src/components/Button"
+import { Formik } from "formik"
+import FormField from "../../src/components/formUI/FormField"
+import Popup from "../../src/components/Popup"
+import { makeClient } from "../../src/services/makeClient"
 
 // /!\ WARNING : this has been coded by Avetis 🤣💀
 export const getServerSideProps = async (context) => {
@@ -15,15 +19,23 @@ export const getServerSideProps = async (context) => {
   }
 }
 
+const initialValues = {
+  total: 0,
+  articles: [],
+}
+
 const Id = ({ query }) => {
-  const { jwt, logout, id, username } = useContext(AppContext)
-  const handleFormSubmit = useCallback(async ({ total }) => {
+  const { jwt, logout, id, username: pseudo } = useContext(AppContext)
+  const [error, setError] = useState(null)
+  const [buttonPopup, setButtonPopup] = useState(false)
+  const handleFormSubmit = useCallback(async ({ total, articles }) => {
     setError(null)
     try {
       const { data } = await makeClient({}).put(
-        `/api/v1/shoppingCart/update/vasco`,
+        `/api/v1/shoppingCart/update/${pseudo}`,
         {
           total,
+          articles,
         }
       )
     } catch (err) {
@@ -35,45 +47,51 @@ const Id = ({ query }) => {
       setError("Oops, something went wrong.")
     }
   }, [])
-  const detailsArticle = useApi([], "get", `/api/v1/articles/find/${query.id}`)
+
+  const detailsArticle = useApi(
+    { pictures: [{}] },
+    "get",
+    `/api/v1/articles/find/${query.id}`
+  )
+
   return (
     <Layout
       title="Kingdhome"
       islogged={!jwt}
       logout={logout}
       id={id}
-      username={username}
+      username={pseudo}
     >
       <div className="pt-6">
         {/* Image gallery */}
         <div className="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
           <div className="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
             <img
-              src={detailsArticle.pictures}
-              alt={detailsArticle.pictures}
+              src={detailsArticle.pictures[1]}
+              alt={detailsArticle.pictures[1]}
               className="w-full h-full object-center object-cover"
             />
           </div>
           <div className="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
               <img
-                src={detailsArticle.pictures}
-                alt={detailsArticle.pictures}
+                src={detailsArticle.pictures[0]}
+                alt={detailsArticle.pictures[0]}
                 className="w-full h-full object-center object-cover"
               />
             </div>
             <div className="aspect-w-3 aspect-h-2 rounded-lg overflow-hidden">
               <img
-                src={detailsArticle.pictures}
-                alt={detailsArticle.pictures}
+                src={detailsArticle.pictures[2]}
+                alt={detailsArticle.pictures[2]}
                 className="w-full h-full object-center object-cover"
               />
             </div>
           </div>
           <div className="aspect-w-4 aspect-h-5 sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4">
             <img
-              src={detailsArticle.pictures}
-              alt={detailsArticle.pictures}
+              src={detailsArticle.pictures[3]}
+              alt={detailsArticle.pictures[3]}
               className="w-full h-full object-center object-cover"
             />
           </div>
@@ -110,11 +128,48 @@ const Id = ({ query }) => {
                 </Text>
               </div>
             </div>
-            <form onSubmit={handleFormSubmit}>
-              <Button type="submit" variant="btnValidation" size="lg">
-                Add to bag
-              </Button>
-            </form>
+            <Formik
+              onSubmit={handleFormSubmit}
+              initialValues={initialValues}
+              validationSchema={null}
+            >
+              {({ isSubmitting, isValid, handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                  <FormField name="total" placeholder=" " type="number">
+                    total
+                  </FormField>
+                  <FormField name="articles" placeholder=" " type="text">
+                    {detailsArticle.id}
+                  </FormField>
+                  <Button
+                    type="submit"
+                    onClick={() => setButtonPopup(true)}
+                    disabled={isSubmitting || !isValid}
+                    variant="btnValidation"
+                    size="lg"
+                  >
+                    Add to bag
+                  </Button>
+                  {!error ? (
+                    <Popup
+                      variant="login_success"
+                      trigger={buttonPopup}
+                      setTrigger={setButtonPopup}
+                    >
+                      <Text variant="popup">Added 😊</Text>
+                    </Popup>
+                  ) : (
+                    <Popup
+                      variant="login_error"
+                      trigger={buttonPopup}
+                      setTrigger={setButtonPopup}
+                    >
+                      <Text variant="popup">Error 💀</Text>
+                    </Popup>
+                  )}
+                </form>
+              )}
+            </Formik>
           </div>
 
           <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
@@ -123,27 +178,6 @@ const Id = ({ query }) => {
               <Text variant="detail_category" size="lg">
                 {detailsArticle.description}
               </Text>
-            </div>
-
-            <div className="mt-10">
-              <Text variant="detail_category" size="lg">
-                Details
-              </Text>
-
-              <div className="mt-4 space-y-6">
-                <Text variant="detail_category" size="md">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
-                </Text>
-              </div>
             </div>
           </div>
         </div>

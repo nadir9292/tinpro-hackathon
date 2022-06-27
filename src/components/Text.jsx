@@ -16,7 +16,8 @@ const variants = {
   card_price: "text-zinc-200 text-left",
   card_rating: "text-zinc-200 text-center",
   detail_name: "text-amber-500 font-bold text-left",
-  detail_category: "text-zinc-200 text-left",
+  detail_category: "text-zinc-200 text-left my-2",
+  detail_description: "text-zinc-200 text-left mt-5",
   detail_price: "text-zinc-200 text-left",
   detail_rating: "text-zinc-200 text-center",
 }

@@ -4,6 +4,7 @@ import Layout from "../src/components/Layout"
 import useApi from "../src/components/useApi"
 import Text from "../src/components/Text"
 import Button from "../src/components/Button"
+import Link from "next/link"
 
 const ShoppingCart = () => {
   const { jwt, logout, id, username } = useContext(AppContext)
@@ -88,11 +89,15 @@ const ShoppingCart = () => {
                 <Text>{shoppingCart.total}$</Text>
               </td>
               <td>
-                <Button variant="btnValidation" size="lg">
-                  <Text variant="nav_bar_text" size="md">
-                    BUY
-                  </Text>
-                </Button>
+                <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/payment-controller">
+                  <a>
+                    <Button variant="btnValidation" size="lg">
+                      <Text variant="nav_bar_text" size="md">
+                        BUY
+                      </Text>
+                    </Button>
+                  </a>
+                </Link>
               </td>
             </tr>
           </tbody>

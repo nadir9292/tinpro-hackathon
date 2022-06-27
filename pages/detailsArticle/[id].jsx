@@ -19,40 +19,8 @@ export const getServerSideProps = async (context) => {
   }
 }
 
-const initialValues = {
-  total: 0,
-  articles: [],
-}
-
 const Id = ({ query }) => {
   const { jwt, logout, id, username: pseudo } = useContext(AppContext)
-  const [error, setError] = useState(null)
-  const [buttonPopup, setButtonPopup] = useState(false)
-  const articleInCart = useApi(
-    { articles: [{}] },
-    "get",
-    `/api/v1/shoppingCart/findByUsername/${pseudo}`
-  )
-
-  const handleFormSubmit = useCallback(async ({ total, articles }) => {
-    setError(null)
-    try {
-      const { data } = await makeClient({}).put(
-        `/api/v1/shoppingCart/update/${pseudo}`,
-        {
-          total,
-          articles,
-        }
-      )
-    } catch (err) {
-      const { response: { data } = {} } = err
-      if (data.error) {
-        setError(data.error)
-        return
-      }
-      setError("Oops, something went wrong.")
-    }
-  }, [])
 
   const detailsArticle = useApi(
     { pictures: [{}] },
@@ -105,10 +73,19 @@ const Id = ({ query }) => {
 
         {/* detailsArticle info */}
         <div className="max-w-2xl mx-auto pt-10 pb-16 px-4 sm:px-6 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
-          <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+          <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8 ">
             <Text variant="detail_name" size="xl">
               {detailsArticle.name}
             </Text>
+            <Text variant="detail_category" size="xl">
+              {detailsArticle.category}
+            </Text>
+            {/* Description and details */}
+            <div className="space-y-6">
+              <Text variant="detail_description" size="md">
+                {detailsArticle.description}
+              </Text>
+            </div>
           </div>
 
           {/* Options */}
@@ -124,68 +101,24 @@ const Id = ({ query }) => {
               <div className="flex items-center">
                 <Text variant="detail_rating" size="lg">
                   {detailsArticle.rating}⭐
-                  <span>
-                    <Link href="/">
-                      <a>
-                        <Text variant="link">Reviews</Text>
-                      </a>
-                    </Link>
-                  </span>
                 </Text>
+                <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/comment-controller">
+                  <a>
+                    <Text variant="link">Reviews</Text>
+                  </a>
+                </Link>
               </div>
             </div>
-            {/* <Formik
-              onSubmit={handleFormSubmit}
-              initialValues={initialValues}
-              validationSchema={null}
-            >
-              {({ isSubmitting, isValid, handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
-                  <FormField name="total" placeholder=" " type="number">
-                    total
-                  </FormField>
-                  <FormField name="articles" placeholder=" " type="text">
-                    {detailsArticle.id}
-                  </FormField>
-                  <Button
-                    type="submit"
-                    onClick={() => setButtonPopup(true)}
-                    disabled={isSubmitting || !isValid}
-                    variant="btnValidation"
-                    size="lg"
-                  >
-                    Add to bag
-                  </Button>
-                  {!error ? (
-                    <Popup
-                      variant="login_success"
-                      trigger={buttonPopup}
-                      setTrigger={setButtonPopup}
-                    >
-                      <Text variant="popup">Added 😊</Text>
-                    </Popup>
-                  ) : (
-                    <Popup
-                      variant="login_error"
-                      trigger={buttonPopup}
-                      setTrigger={setButtonPopup}
-                    >
-                      <Text variant="popup">Error 💀</Text>
-                    </Popup>
-                  )}
-                </form>
-              )}
-            </Formik> */}
+            <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/shopping-cart-controller">
+              <a>
+                <Button variant="btnValidation" size="lg">
+                  Add to bag
+                </Button>
+              </a>
+            </Link>
           </div>
 
-          <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-            {/* Description and details */}
-            <div className="space-y-6">
-              <Text variant="detail_category" size="lg">
-                {detailsArticle.description}
-              </Text>
-            </div>
-          </div>
+          <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8"></div>
         </div>
       </div>
     </Layout>

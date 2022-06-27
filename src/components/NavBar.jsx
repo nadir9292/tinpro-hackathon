@@ -66,18 +66,29 @@ const NavBar = (props) => {
                     you must be logged in, to see your profile
                   </div>
                 ) : (
-                  <div className="border-t border-gray-200 flex flex-row p-4 ">
-                    <EditInactiveIcon
-                      className="mr-2 h-5 w-5"
-                      aria-hidden="true"
-                    />
-                    <Link
-                      href={{
-                        pathname: `./detailsProfil/${userId}`,
-                      }}
-                    >
-                      <a>Edit my profil</a>
-                    </Link>
+                  <div className="border-t border-gray-200  ">
+                    <div className="flex flex-row p-4">
+                      <EditInactiveIcon
+                        className="mr-2 h-5 w-5"
+                        aria-hidden="true"
+                      />
+                      <Link
+                        href={{
+                          pathname: `./detailsProfil/${userId}`,
+                        }}
+                      >
+                        <a>Edit my profil</a>
+                      </Link>
+                    </div>
+                    <div className="flex flex-row px-4 pb-2">
+                      <EditInactiveIcon
+                        className="mr-2 h-5 w-5"
+                        aria-hidden="true"
+                      />
+                      <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/auth-controller">
+                        <a>Change my password</a>
+                      </Link>
+                    </div>
                   </div>
                 )}
 
@@ -106,11 +117,23 @@ const NavBar = (props) => {
                       <div className="flex flex-row">
                         <PlusIcon className="mr-2 h-5 w-5 text-gray-500" />
                         <Link href="/addArticle">
-                          <a>Add article</a>
+                          <a>Add an article</a>
                         </Link>
                       </div>
                       <div className="flex flex-row">
-                        <LogoutIcon className="mr-2 h-5 w-5 text-red-500" />
+                        <EditInactiveIcon className="mr-2 h-5 w-5 text-gray-500" />
+                        <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/article-controller">
+                          <a>Modify an article</a>
+                        </Link>
+                      </div>
+                      <div className="flex flex-row text-red-500">
+                        <XIcon className="mr-2 h-5 w-5 " />
+                        <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/article-controller">
+                          <a>Delete an article</a>
+                        </Link>
+                      </div>
+                      <div className="flex flex-row text-red-500 py-5">
+                        <LogoutIcon className="mr-2 h-5 w-5 " />
                         <button onClick={logout}>Log Out</button>
                       </div>
                     </>
@@ -220,6 +243,36 @@ const NavBar = (props) => {
                             )}
                           </Menu.Item>
                         </div>
+                        <div className="px-1 py-1 ">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/auth-controller">
+                                <a>
+                                  <button
+                                    className={`${
+                                      active
+                                        ? "bg-orange-500 text-white"
+                                        : "text-gray-900"
+                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                  >
+                                    {active ? (
+                                      <EditActiveIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    ) : (
+                                      <EditInactiveIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                    Change my password
+                                  </button>
+                                </a>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </div>
                         <div className="px-1 py-1">
                           <Menu.Item>
                             {({ active }) => (
@@ -294,7 +347,67 @@ const NavBar = (props) => {
                                         aria-hidden="true"
                                       />
                                     )}
-                                    Add arcticle
+                                    Add an arcticle
+                                  </button>
+                                </a>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </div>
+                        <div className="px-1 py-1 ">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/article-controller">
+                                <a>
+                                  <button
+                                    className={`${
+                                      active
+                                        ? "bg-orange-500 text-white"
+                                        : "text-gray-900"
+                                    } group flex w-full items-center rounded-md px-1 py-1 text-sm`}
+                                  >
+                                    {active ? (
+                                      <EditInactiveIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    ) : (
+                                      <EditInactiveIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                    Modify an arcticle
+                                  </button>
+                                </a>
+                              </Link>
+                            )}
+                          </Menu.Item>
+                        </div>
+                        <div className="px-1 py-1 ">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link href="https://kingdhome-api.herokuapp.com/swagger-ui.html#/article-controller">
+                                <a>
+                                  <button
+                                    className={`${
+                                      active
+                                        ? "bg-orange-500 text-white"
+                                        : "text-red-400"
+                                    } group flex w-full items-center rounded-md px-1 py-1 text-sm`}
+                                  >
+                                    {active ? (
+                                      <XIcon
+                                        className="mr-2 h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    ) : (
+                                      <XIcon
+                                        className="mr-2 h-5 w-5 text-red-400"
+                                        aria-hidden="true"
+                                      />
+                                    )}
+                                    Delete an article
                                   </button>
                                 </a>
                               </Link>

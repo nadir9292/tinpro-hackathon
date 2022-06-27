@@ -13,6 +13,7 @@ import { makeClient } from "../src/services/makeClient"
 import { AppContext } from "../src/components/AppContext"
 import { useRouter } from "next/router"
 import Popup from "../src/components/Popup"
+import Link from "next/link"
 
 const initialValues = {
   username: "",
@@ -86,6 +87,14 @@ const Login = () => {
               <FormField name="password" type="password" placeholder=" ">
                 Password
               </FormField>
+              <Text variant="info" sizes="sm">
+                Don't have an account ?&nbsp;
+                <Link href="/register">
+                  <a>
+                    <Text variant="link">Sign Up</Text>
+                  </a>
+                </Link>
+              </Text>
               <Button
                 type="submit"
                 onClick={() => setButtonPopup(true)}

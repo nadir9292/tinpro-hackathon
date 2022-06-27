@@ -13,6 +13,7 @@ import { useCallback, useContext, useState } from "react"
 import { makeClient } from "../src/services/makeClient"
 import Popup from "../src/components/Popup"
 import { AppContext } from "../src/components/AppContext"
+import Link from "next/link"
 
 const initialValues = {
   username: "",
@@ -76,6 +77,14 @@ const Register = () => {
               <FormField name="password" type="password" placeholder=" ">
                 Password
               </FormField>
+              <Text variant="info" sizes="sm">
+                You already have an account?&nbsp;
+                <Link href="/login">
+                  <a>
+                    <Text variant="link">Sign in</Text>
+                  </a>
+                </Link>
+              </Text>
               <Button
                 type="submit"
                 onClick={() => setButtonPopup(true)}

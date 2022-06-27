@@ -1,6 +1,6 @@
 import ReactPaginate from "react-paginate"
 
-const Pagination = ({ totalPage, page }) => {
+const Pagination = () => {
   const handlePageClick = () => {}
 
   return (
@@ -10,7 +10,7 @@ const Pagination = ({ totalPage, page }) => {
         previousLabel={"previous"}
         nextLabel={"next"}
         breakLabel={"..."}
-        pageCount={totalPage}
+        pageCount={10}
         marginPagesDisplayed={1}
         onPageChange={handlePageClick}
         className="flex justify-between uppercase text-zinc-100 border rounded p-4 text-xl font-bold"

@@ -66,7 +66,7 @@ const Index = () => {
             )
           )}
         </div>
-        <Pagination totalPage={articles.totalPages} />
+        <Pagination />
       </div>
     </Layout>
   )

@@ -4,55 +4,40 @@ import FormField from "../src/components/formUI/FormField"
 import Button from "../src/components/Button"
 import Text from "../src/components/Text"
 import {
-  usernameValidator,
+  emailValidator,
   passwordValidator,
 } from "../src/components/validators/validators"
 import * as yup from "yup"
-import { useCallback, useContext, useState } from "react"
+import { useCallback, useState } from "react"
 import { makeClient } from "../src/services/makeClient"
-import { AppContext } from "../src/components/AppContext"
-import { useRouter } from "next/router"
 import Popup from "../src/components/Popup"
 import Link from "next/link"
 
 const initialValues = {
-  username: "",
+  email: "",
   password: "",
 }
 
 const validationSchema = yup.object().shape({
-  username: usernameValidator.required(),
+  email: emailValidator.required(),
   password: passwordValidator.required(),
 })
 
 const Login = () => {
-  const router = useRouter()
-
-  const redirect = () => {
-    router.reload()
-  }
-
-  const { jwt, logout, username } = useContext(AppContext)
-
   const [error, setError] = useState(null)
-
-  const { savejwt } = useContext(AppContext)
 
   const [buttonPopup, setButtonPopup] = useState(false)
 
-  const handleFormSubmit = useCallback(async ({ username, password }) => {
+  const handleFormSubmit = useCallback(async ({ email, password }) => {
     setError(null)
     try {
       const {
-        data: { jwt, id, username: pseudo },
-      } = await makeClient().post("/api/v1/auth/signin", { username, password })
+        data: { jwt, id, email: pseudo },
+      } = await makeClient().post("/api/v1/auth/signin", { email, password })
 
       if (!jwt) {
         throw new Error("Missing jwt.")
       }
-
-      redirect()
-      savejwt(jwt, id, pseudo)
     } catch (err) {
       const { response: { data } = {} } = err
       if (data.error) {
@@ -64,13 +49,8 @@ const Login = () => {
   }, [])
 
   return (
-    <Layout
-      title="Kingdhome"
-      islogged={!jwt}
-      logout={logout}
-      username={username}
-    >
-      <div className="max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
+    <Layout>
+      <div className="grid grid-cols-1 gap-4 place-items-center max-w-2xl  mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-4xl lg:px-8">
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}
@@ -81,20 +61,14 @@ const Login = () => {
               <Text variant="login_register" size="xl">
                 Welcome
               </Text>
-              <FormField name="username" type="text" placeholder=" ">
-                Username
+              <img src="/tinpro_logo.png" width="250" height="250" />
+              <FormField name="email" type="email" placeholder=" ">
+                e-Mail
               </FormField>
               <FormField name="password" type="password" placeholder=" ">
                 Password
               </FormField>
-              <Text variant="info" sizes="sm">
-                Don't have an account ?&nbsp;
-                <Link href="/register">
-                  <a>
-                    <Text variant="link">Sign Up</Text>
-                  </a>
-                </Link>
-              </Text>
+
               <Button
                 type="submit"
                 onClick={() => setButtonPopup(true)}
@@ -102,7 +76,7 @@ const Login = () => {
                 variant="btnValidation"
                 size="lg"
               >
-                Sign Up
+                Sign in
               </Button>
               {!error ? (
                 <Popup
@@ -121,6 +95,11 @@ const Login = () => {
                   <Text variant="popup">Bad credential 💀</Text>
                 </Popup>
               )}
+              <Link href="/">
+                <a>
+                  <Text variant="link">go back</Text>
+                </a>
+              </Link>
             </form>
           )}
         </Formik>

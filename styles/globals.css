@@ -6,9 +6,12 @@ html,
 body,
 #__next {
   @apply min-h-full;
-  background-color: #111827;
-  background-image: url("https://tailwindcss.com/_next/static/media/docs@tinypng.61f4d3334a6d245fc2297517c87ae044.png");
-  background-repeat: no-repeat;
+  background-color: rgb(
+    rgb(232, 223, 223),
+    rgb(229, 237, 229),
+    rgb(229, 229, 240)
+  );
+
   background-size: auto;
 }
 
@@ -28,9 +31,9 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   border: 1px solid transparent;
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: blue;
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
-  color: white;
+  color: blue;
 }

@@ -19,7 +19,6 @@ const initialValues = {
   username: "",
   email: "",
   password: "",
-  role: "USER",
 }
 
 const validationSchema = yup.object().shape({
@@ -31,14 +30,13 @@ const validationSchema = yup.object().shape({
 const RegisterCompany = () => {
   const [error, setError] = useState(null)
   const handleFormSubmit = useCallback(
-    async ({ username, email, password, role }) => {
+    async ({ username, email, password }) => {
       setError(null)
       try {
         const { data } = await makeClient().post("/api/v1/auth/signup", {
           username,
           email,
           password,
-          role,
         })
       } catch (err) {
         const { response: { data } = {} } = err

@@ -21,6 +21,7 @@ const variants = {
   detail_description: "text-zinc-200 text-left mt-5",
   detail_price: "text-zinc-200 text-left",
   detail_rating: "text-zinc-200 text-center",
+  profile_text: "text-gray-700",
 }
 
 const sizes = {

@@ -100,7 +100,7 @@ const Id = () => {
               onSwipe={(dir) => swiped(dir, candidates.name)}
               onCardLeftScreen={() => outOfFrame(candidates.name)}
             >
-              <div className="grid grid-cols-1 gap-4 max-w-sm rounded overflow-hidden shadow-lg bg-blue-100">
+              <div className="grid grid-cols-1 gap-4  py-5 max-w-sm rounded overflow-hidden shadow-lg bg-orange-400">
                 <img
                   className="justify-self-center"
                   src="/iconProfile.png"

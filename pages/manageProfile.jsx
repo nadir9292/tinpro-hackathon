@@ -8,89 +8,91 @@ const profiles = [
     id: faker.datatype.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
+    expYears: 2,
+    jobs: "Developper Web",
+    skills: [
+      "Node js",
+      "React js",
+      "python",
+      "SQL",
+      "PHP",
+      "Node js",
+      "React js",
+    ],
   },
   {
     id: faker.datatype.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
+    expYears: 9,
+    jobs: "DATA ANALYST",
+    skills: [
+      "AMAZON AWS",
+      "Hadoop",
+      "LINUX",
+      "cloud",
+      "Firewalls",
+      "SCRUM",
+      "SQL",
+      "PHP",
+      "php",
+      "SQL",
+      "cloud ",
+    ],
   },
   {
     id: faker.datatype.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
+    expYears: 4,
+    jobs: "Developper FULLSTACK",
+    skills: ["java", "TYPESCRIPT", "SQL", "PHP"],
   },
   {
     id: faker.datatype.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
+    expYears: 0,
+    jobs: "ADMIN SYS",
+    skills: ["Cisco", "DNS", "SQL", "cisco routers", "SDWAN", "PPOE", "cloud"],
   },
   {
     id: faker.datatype.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
+    expYears: 2,
+    jobs: "Cybersecurity Engineer",
+    skills: [
+      "java",
+      "python",
+      "SQL",
+      "PHP",
+      "Node js",
+      "React js",
+      "fullstack",
+      "python",
+      "SQL",
+      "PHP",
+    ],
   },
   {
     id: faker.datatype.number(),
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
-  },
-  {
-    id: faker.datatype.number(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
-  },
-  {
-    id: faker.datatype.number(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
-  },
-  {
-    id: faker.datatype.number(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
-  },
-  {
-    id: faker.datatype.number(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
-  },
-  {
-    id: faker.datatype.number(),
-    firstName: faker.name.firstName(),
-    lastName: faker.name.lastName(),
-    expYears: faker.datatype.number(),
-    jobs: faker.name.jobTitle(),
-    skills: ["skill 1", "skill 2", "skill 3", "skill 4", "skill 5"],
+    expYears: 1,
+    jobs: "DATA ANALYST",
+    skills: [
+      "Hadoop",
+      "php",
+      "SQL",
+      "cloud ",
+      "JIRA",
+      "DATAVIS",
+      "SQL",
+      "cisco routers",
+      "SDWAN",
+      "PPOE",
+    ],
   },
 ]
 
@@ -116,8 +118,7 @@ const manageProfile = () => {
                         <Text variant="profile_text" size="sm">
                           Profile n°{index}
                         </Text>
-                        <p className="text-xl font-medium leading-5 text-gray-800">
-                          {firstName} {lastName} -
+                        <p className="text-xl font-medium mt-2 leading-5 text-gray-800">
                           <span className="text-2xl font-bold">{jobs}</span>
                         </p>
                         <p className="text-sm leading-normal pt-2 text-gray-500">
@@ -127,9 +128,9 @@ const manageProfile = () => {
                     </div>
                   </div>
                   <div className="px-2">
-                    <div className="grid grid-rows-3 grid-flow-col gap-4">
+                    <div className="grid grid-rows-3 grid-flow-col gap-2">
                       {skills.map((item) => (
-                        <div className="py-2 px-4 text-center mt-2 text-center  text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">
+                        <div className="py-2 px-4 text-center font-bold mt-2 text-center  text-xs  text-indigo-800 rounded-full bg-indigo-100">
                           {item}
                         </div>
                       ))}

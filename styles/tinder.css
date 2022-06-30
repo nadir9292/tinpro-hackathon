@@ -1,32 +1,24 @@
 .swipe {
   position: absolute;
+  height: 100% !important;
+  max-height: 200px !important;
 }
 
-.buttons {
-  margin: 20px;
-  display: flex;
+.id_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: 4px solid blue;
+  height: 100vh;
 }
 
-@keyframes popup {
-  0% {
-    transform: scale(1, 1);
-  }
-  10% {
-    transform: scale(1.1, 1.1);
-  }
-  30% {
-    transform: scale(0.9, 0.9);
-  }
-  50% {
-    transform: scale(1, 1);
-  }
-  57% {
-    transform: scale(1, 1);
-  }
-  64% {
-    transform: scale(1, 1);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
+.id_cards {
+  border: 4px solid green;
+  height: auto;
+  position: relative;
+}
+
+.id_swipe-infos {
+  background-color: red;
+  grid-row: 2 / -1;
 }

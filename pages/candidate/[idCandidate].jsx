@@ -1,324 +1,372 @@
+import Link from "next/link"
 import Text from "../../src/components/Text"
 
 const candidate = () => {
   return (
     <>
       <div className="xl:w-3/4 2xl:w-4/5 w-full">
-        <Text variant="login_register" size="lg">
-          Notif
+        <Text variant="login_register" size="xl">
+          Notification
         </Text>
-        <div className="bg-white px-4 md:px-10 pb-5">
+        <div className="bg-white px-4 md:px-10 pb-5 mt-5">
           <div className="overflow-x-auto">
             <table className="w-full whitespace-nowrap">
               <tbody>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gray-700 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          FIG
-                        </p>
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <Link href="/companyProfile">
+                          <a>
+                            <p className="text-xs font-bold leading-3 text-white p-2">
+                              Match !
+                            </p>
+                          </a>
+                        </Link>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Fonts.fig
+                          Atos
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          Developper Web
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
+                    <p>full-time</p>
                   </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
+                </tr>
+
+                <tr className="text-sm leading-none text-gray-600 h-16">
+                  <td className="w-1/2">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          MATCH !
+                        </p>
+                      </div>
+                      <div className="pl-2">
+                        <p className="text-sm font-medium leading-none text-gray-800">
+                          OSP
+                        </p>
+                        <p className="text-xs leading-3 text-gray-600 mt-2">
+                          Developper fULLSTACK
+                        </p>
+                      </div>
+                    </div>
                   </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                  <td className="pl-16">
+                    <p>full-time</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-red-400 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          PPT
+                      <div className="w-16 h-16 bg-red-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          INFO
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Wireframes.ppt
+                          Update your profile !
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          System
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p></p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-blue-400 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          DOC
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Project Outline.doc
+                          SARL Toto
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          Product Owner
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p>internship</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gray-700 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          FIG
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Fonts.fig
+                          Oostaoo Star up
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          Developper Backend
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p>full-time</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-red-400 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          PPT
+                      <div className="w-16 h-16 bg-yellow-500 rounded-sm flex items-center justify-center">
+                        <p className="text-md font-bold leading-3 text-white p-2">
+                          Tips
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Wireframes.ppt
+                          toto
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          System
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p></p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-blue-400 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          DOC
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Project Outline.doc
+                          BlockChainYourIp
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          IT technician
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p>full-time</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gray-700 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          FIG
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Fonts.fig
+                          Kwarto
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          Developper Backend
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p>full-time</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-red-400 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          PPT
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Wireframes.ppt
+                          Dassault Systemes
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          IT Engeneer
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p>full-time</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-blue-400 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          DOC
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Project Outline.doc
+                          Prisma Media
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          Developper Java
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
-                  </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                    <p>full-time</p>
                   </td>
                 </tr>
                 <tr className="text-sm leading-none text-gray-600 h-16">
                   <td className="w-1/2">
                     <div className="flex items-center">
-                      <div className="w-10 h-10 bg-gray-700 rounded-sm flex items-center justify-center">
-                        <p className="text-xs font-bold leading-3 text-white">
-                          FIG
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
                         </p>
                       </div>
                       <div className="pl-2">
                         <p className="text-sm font-medium leading-none text-gray-800">
-                          Fonts.fig
+                          Amazon
                         </p>
                         <p className="text-xs leading-3 text-gray-600 mt-2">
-                          Shared by Ashley Wilson
+                          Developper Backend
                         </p>
                       </div>
                     </div>
                   </td>
                   <td className="pl-16">
-                    <p>#designer</p>
+                    <p>full-time</p>
                   </td>
-                  <td>
-                    <p className="pl-16">3.7gb</p>
+                </tr>
+                <tr className="text-sm leading-none text-gray-600 h-16">
+                  <td className="w-1/2">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
+                        </p>
+                      </div>
+                      <div className="pl-2">
+                        <p className="text-sm font-medium leading-none text-gray-800">
+                          SlamPo
+                        </p>
+                        <p className="text-xs leading-3 text-gray-600 mt-2">
+                          Developper web
+                        </p>
+                      </div>
+                    </div>
                   </td>
-                  <td>
-                    <p className="pl-16">4 members</p>
+                  <td className="pl-16">
+                    <p>full-time</p>
                   </td>
-                  <td>
-                    <p className="pl-16">Shared on 21 Februray 2020</p>
+                </tr>
+                <tr className="text-sm leading-none text-gray-600 h-16">
+                  <td className="w-1/2">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
+                        </p>
+                      </div>
+                      <div className="pl-2">
+                        <p className="text-sm font-medium leading-none text-gray-800">
+                          Ubisost
+                        </p>
+                        <p className="text-xs leading-3 text-gray-600 mt-2">
+                          Game Developper
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pl-16">
+                    <p>full-time</p>
+                  </td>
+                </tr>
+                <tr className="text-sm leading-none text-gray-600 h-16">
+                  <td className="w-1/2">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
+                        </p>
+                      </div>
+                      <div className="pl-2">
+                        <p className="text-sm font-medium leading-none text-gray-800">
+                          Microsoft
+                        </p>
+                        <p className="text-xs leading-3 text-gray-600 mt-2">
+                          Developper web
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pl-16">
+                    <p>full-time</p>
+                  </td>
+                </tr>
+                <tr className="text-sm leading-none text-gray-600 h-16">
+                  <td className="w-1/2">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
+                        </p>
+                      </div>
+                      <div className="pl-2">
+                        <p className="text-sm font-medium leading-none text-gray-800">
+                          Google
+                        </p>
+                        <p className="text-xs leading-3 text-gray-600 mt-2">
+                          Developper Backend
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pl-16">
+                    <p>full-time</p>
+                  </td>
+                </tr>
+                <tr className="text-sm leading-none text-gray-600 h-16">
+                  <td className="w-1/2">
+                    <div className="flex items-center">
+                      <div className="w-16 h-16 bg-blue-500 rounded-sm flex items-center justify-center">
+                        <p className="text-xs font-bold leading-3 text-white p-2">
+                          Match !
+                        </p>
+                      </div>
+                      <div className="pl-2">
+                        <p className="text-sm font-medium leading-none text-gray-800">
+                          Amazon
+                        </p>
+                        <p className="text-xs leading-3 text-gray-600 mt-2">
+                          Developper FULLSTACK
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="pl-16">
+                    <p>full-time</p>
                   </td>
                 </tr>
               </tbody>

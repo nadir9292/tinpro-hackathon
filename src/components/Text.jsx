@@ -22,6 +22,7 @@ const variants = {
   detail_price: "text-zinc-200 text-left",
   detail_rating: "text-zinc-200 text-center",
   profile_text: "text-gray-700",
+  card_candidate: "text-gray-800",
 }
 
 const sizes = {

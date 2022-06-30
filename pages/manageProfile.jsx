@@ -141,7 +141,9 @@ const manageProfile = () => {
           </Link>
         )
       )}
-      <Button className="absolute">add new profile</Button>
+      <Button variant="btnAdd" size="lg">
+        ➕
+      </Button>
     </div>
   )
 }

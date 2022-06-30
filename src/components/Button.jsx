@@ -11,6 +11,8 @@ const variants = {
     "w-full flex items-center justify-center my-5 border border-transparent rounded-lg shadow-lg  font-medium text-zinc-100 bg-orange-500 hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-700",
   btnDelete:
     "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900",
+  btnAdd:
+    "inline-block rounded-full bg-orange-400 text-white leading-normal uppercase shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out",
 }
 
 const sizes = {

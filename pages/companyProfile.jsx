@@ -1,13 +1,8 @@
 import { useState } from "react"
 import Link from "next/link"
-import { Widget } from "react-chat-widget"
 
 const companyProfile = () => {
   const [choice, setChoice] = useState(false)
-  const handleNewUserMessage = (newMessage) => {
-    console.log(`New message incoming! ${newMessage}`)
-    // Now send the message throught the backend API
-  }
 
   return (
     <>
@@ -68,7 +63,13 @@ const companyProfile = () => {
                       </button>
                     </>
                   ) : (
-                    <Widget handleNewUserMessage={handleNewUserMessage} />
+                    <Link href="/chat">
+                      <a>
+                        <button className="mx-2 my-2 bg-red-500 transition duration-150 ease-in-out hover:border-indigo-600 hover:text-indigo-600 rounded border border-indigo-700 text-zinc-100 px-10 py-5 text-lg font-bold ">
+                          CHAT
+                        </button>
+                      </a>
+                    </Link>
                   )}
                 </div>
                 <br />
